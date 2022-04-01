@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 4f;
+    public float speed = 5f;
     public float shotDelay = 0;
     public float SHOT_MAX_TIME = 1f;
 
+    public GameObject explosionObj;
     public GameObject shot;
     public Transform shotPointTf;
     Vector3 min, max;
@@ -76,5 +77,17 @@ public class PlayerScript : MonoBehaviour
         }
 
         transform.position = new Vector3(newX, newY, transform.position.z);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Asteroid" ||
+            collision.gameObject.tag == "Enemy" ||
+            collision.gameObject.tag == "EnemyShot")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            Instantiate(explosionObj, transform.position, Quaternion.identity);
+        }
     }
 }

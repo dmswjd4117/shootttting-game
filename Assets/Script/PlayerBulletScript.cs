@@ -26,14 +26,24 @@ public class PlayerBulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print(collision);
-        if(collision.tag == "Asteroid")
+        if (collision.tag == "Asteroid")
         {
             AsteroidScript asteroidScript = collision.gameObject.GetComponent<AsteroidScript>();
             asteroidScript.hp -= ATTACK;
-            if(asteroidScript.hp <= 0)
+            if (asteroidScript.hp <= 0)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
+        else if (collision.tag == "Enemy")
+        {
+            EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
+            enemyScript.hp -= ATTACK;
+            if (enemyScript.hp <= 0)
             {
                 Destroy(collision.gameObject);
             }
         }
     }
+
 }
