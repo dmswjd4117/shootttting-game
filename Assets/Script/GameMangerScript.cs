@@ -1,17 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMangerScript : MonoBehaviour
 {
+    public static GameMangerScript instance;
+    public Text coinText;
     public GameObject asteroid;
     public List<GameObject> enimies;
     public float time = 0;
     public float MAX_TIME = 2;
+    public float coinSum;
+
+    public void UpdateCoinText()
+    {
+        coinText.text = coinSum.ToString();
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        coinSum = 0;
+        UpdateCoinText();
     }
 
     // Update is called once per frame
@@ -33,5 +49,10 @@ public class GameMangerScript : MonoBehaviour
             }
             time = 0;
         }
+    }
+
+    public void PauseEventListener()
+    {
+        print("pause");
     }
 }

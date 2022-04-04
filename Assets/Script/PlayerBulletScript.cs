@@ -6,6 +6,8 @@ public class PlayerBulletScript : MonoBehaviour
 {
     public float speed = 10;
     private const int ATTACK = 1;
+    public GameObject coinObj;
+    public GameObject BurstObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,24 +27,33 @@ public class PlayerBulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision);
         if (collision.tag == "Asteroid")
         {
             AsteroidScript asteroidScript = collision.gameObject.GetComponent<AsteroidScript>();
             asteroidScript.hp -= ATTACK;
+            Instantiate(BurstObj, transform.position, Quaternion.identity);
             if (asteroidScript.hp <= 0)
             {
                 Destroy(collision.gameObject);
+                CoinScript coinScript = coinObj.GetComponent<CoinScript>();
+                coinScript.coinValue = asteroidScript.coinValue;
+                Instantiate(coinObj, transform.position, Quaternion.identity);
             }
+            Destroy(gameObject);
         }
         else if (collision.tag == "Enemy")
         {
             EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
             enemyScript.hp -= ATTACK;
+            Instantiate(BurstObj, transform.position, Quaternion.identity);
             if (enemyScript.hp <= 0)
             {
                 Destroy(collision.gameObject);
+                CoinScript coinScript = coinObj.GetComponent<CoinScript>();
+                coinScript.coinValue = enemyScript .coinValue;
+                Instantiate(coinObj, transform.position, Quaternion.identity);
             }
+            Destroy(gameObject);
         }
     }
 

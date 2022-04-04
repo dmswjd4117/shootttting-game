@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1718259893
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8defa1ab2abadf44e8c7d4110b782fcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,8 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyShot: {fileID: 327598105811453803, guid: e701e6d5ae19a4d61a7e9a20174773ca, type: 3}
+  BurstObj: {fileID: 1796639020198393529, guid: ae63ee9098f464c67865b5214b1d77f9, type: 3}
   type: 2
   hp: 1
   speed: 1
   maxShotTime: 0
   shotSpeed: 0
+  time: 0
+  coinValue: 0

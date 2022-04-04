@@ -89,5 +89,14 @@ public class PlayerScript : MonoBehaviour
             Destroy(gameObject);
             Instantiate(explosionObj, transform.position, Quaternion.identity);
         }
+
+        else if(collision.gameObject.tag == "Item")
+        {
+            CoinScript coinScript = collision.gameObject.GetComponent<CoinScript>();
+            GameMangerScript.instance.coinSum += coinScript.coinValue;
+            GameMangerScript.instance.UpdateCoinText();
+
+            Destroy(collision.gameObject);
+        }
     }
 }

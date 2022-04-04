@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  coinObj: {fileID: 6608354988439496531, guid: db56dcdbd4a4b4b98b8f74bbae9bc6bb, type: 3}
+  BurstObj: {fileID: 6483081633696430335, guid: fbeff3e638c9f462e873b83e7446bdff, type: 3}
 --- !u!50 &7759548101261081513
 Rigidbody2D:
   serializedVersion: 4

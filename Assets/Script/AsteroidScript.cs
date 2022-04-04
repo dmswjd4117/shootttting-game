@@ -7,6 +7,7 @@ public class AsteroidScript : MonoBehaviour
     public float rotSpeed = 30;
     public float speed = 3;
     public int hp = 1;
+    public float coinValue = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,6 @@ public class AsteroidScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
-        //transform.Rotate(new Vector3(0, 0, Time.deltaTime * rotSpeed));
     }
 
     private void OnBecameInvisible()

@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     public float maxShotTime = 1;
     public float shotSpeed = 1;
     public float time = 0;
+    public float coinValue = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,20 +21,23 @@ public class EnemyScript : MonoBehaviour
             case 0:
                 hp = 1;
                 speed = 1f;
-                maxShotTime = 1.5f;
-                shotSpeed = 2;
+                maxShotTime = 3.5f;
+                shotSpeed = 3;
+                coinValue = 15;
                 break;
             case 1:
                 hp = 2;
                 speed = 1.3f;
-                maxShotTime = 1.3f;
+                maxShotTime = 2.3f;
                 shotSpeed = 3;
+                coinValue = 20;
                 break;
             case 2:
                 hp = 3;
                 speed = 1.5f;
-                maxShotTime = 1;
-                shotSpeed = 5;
+                maxShotTime = 3;
+                shotSpeed = 4;
+                coinValue = 30;
                 break;
         }
     }
