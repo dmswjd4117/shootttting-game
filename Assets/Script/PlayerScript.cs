@@ -88,13 +88,16 @@ public class PlayerScript : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
             Instantiate(explosionObj, transform.position, Quaternion.identity);
+
+            // retry panel
+            GameMangerScript.instance.ActiveRetryPanel();
         }
 
         else if(collision.gameObject.tag == "Item")
         {
             CoinScript coinScript = collision.gameObject.GetComponent<CoinScript>();
-            GameMangerScript.instance.coinSum += coinScript.coinValue;
-            GameMangerScript.instance.UpdateCoinText();
+
+            GameMangerScript.instance.AddandUpdateCoinText(coinScript.coinValue);
 
             Destroy(collision.gameObject);
         }

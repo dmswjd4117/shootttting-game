@@ -38,6 +38,7 @@ public class PlayerBulletScript : MonoBehaviour
                 CoinScript coinScript = coinObj.GetComponent<CoinScript>();
                 coinScript.coinValue = asteroidScript.coinValue;
                 Instantiate(coinObj, transform.position, Quaternion.identity);
+                GameMangerScript.instance.KillEnemy();
             }
             Destroy(gameObject);
         }
@@ -52,6 +53,8 @@ public class PlayerBulletScript : MonoBehaviour
                 CoinScript coinScript = coinObj.GetComponent<CoinScript>();
                 coinScript.coinValue = enemyScript .coinValue;
                 Instantiate(coinObj, transform.position, Quaternion.identity);
+                GameMangerScript.instance.KillEnemy();
+
             }
             Destroy(gameObject);
         }
