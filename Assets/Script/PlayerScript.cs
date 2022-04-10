@@ -50,9 +50,9 @@ public class PlayerScript : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        Vector3 dir = new Vector3(x, y, 0);
+        Vector3 move = new Vector3(x, y, 0);
 
-        transform.position += dir * Time.deltaTime * speed;
+        transform.position += move * Time.deltaTime * speed;
 
         float newX = transform.position.x;
         float newY = transform.position.y;
