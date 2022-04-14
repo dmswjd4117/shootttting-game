@@ -13,7 +13,9 @@ public class DataMangerScript : MonoBehaviour
 
     private string TOTAL_COIN = "TotalCoin";
     private string STAGE = "Stage";
+    private int FINAL_STAGE = 4;
 
+    private int[] clearKillPerStage = new int[5] { 0, 1, 2, 4, 5 };
 
     private void Awake()
     {
@@ -49,8 +51,24 @@ public class DataMangerScript : MonoBehaviour
 
     public void AddStage()
     {
+        if(this.stage == FINAL_STAGE)
+        {
+            return;
+        }
         this.stage += 1;
         PlayerPrefs.SetInt(STAGE, this.stage);
     }
 
+
+    public int getClearKillPerStage()
+    {
+        return clearKillPerStage[stage];
+    }
+
+    public void resetGame() {
+        PlayerPrefs.SetFloat(TOTAL_COIN, 0);
+        PlayerPrefs.SetInt(STAGE, 1);
+        this.stage = 1;
+        this.totalCoin = 0;
+    }
 }

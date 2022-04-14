@@ -301,9 +301,9 @@ GameObject:
   - component: {fileID: 215288990}
   - component: {fileID: 215288992}
   - component: {fileID: 215288993}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 274935538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotPointTransfrom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 526167292}
   - component: {fileID: 526167291}
   - component: {fileID: 526167290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Engine_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &528454880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3169,10 +3169,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 701290034}
   retryPanel: {fileID: 847664370}
+  clearPanel: {fileID: 528454879}
   RetryPanel_coinText: {fileID: 2092779750}
   RetryPanel_stageText: {fileID: 1854644540}
   RetryPanel_retryBtn: {fileID: 1746108712}
   RetryPanel_MainBtn: {fileID: 1190343952}
+  ClearPanel_coinText: {fileID: 802137944}
+  ClearPanel_stageText: {fileID: 1544146430}
+  ClearPanel_nextStepBtn: {fileID: 1131013591}
+  ClearPanel_MainBtn: {fileID: 1088682283}
   coinText: {fileID: 1255176233}
   asteroid: {fileID: 7625513194433330833, guid: 5e30a4961c0bd41d8b7d467648df2ed2, type: 3}
   enimies:

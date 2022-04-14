@@ -74,7 +74,7 @@ public class GameMangerScript : MonoBehaviour
     public void KillEnemy()
     {
         this.kill += 1;
-        if(this.kill >= 1)
+        if(this.kill >= DataMangerScript.instance.getClearKillPerStage()) 
         {
             ActiveClearPanel();
         }
@@ -169,6 +169,5 @@ public class GameMangerScript : MonoBehaviour
         clearPanel.SetActive(true);
 
         DataMangerScript.instance.AddStage();
-        print(DataMangerScript.instance.GetStage());
     }
 }

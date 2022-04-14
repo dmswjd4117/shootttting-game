@@ -23,4 +23,5 @@ public class EnemyShotScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 }

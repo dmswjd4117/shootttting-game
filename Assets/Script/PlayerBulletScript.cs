@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour
 {
-    public float speed = 10;
+    public float speed = 15;
     private const int ATTACK = 1;
     public GameObject coinObj;
     public GameObject BurstObj;

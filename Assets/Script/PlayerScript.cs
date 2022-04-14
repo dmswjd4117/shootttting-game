@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 20f;
     public float shotDelay = 0;
     public float SHOT_MAX_TIME = 1f;
 
@@ -87,8 +88,6 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            Instantiate(explosionObj, transform.position, Quaternion.identity);
-
             // retry panel
             GameMangerScript.instance.ActiveRetryPanel();
         }
@@ -100,6 +99,14 @@ public class PlayerScript : MonoBehaviour
             GameMangerScript.instance.AddandUpdateCoinText(coinScript.coinValue);
 
             Destroy(collision.gameObject);
+        }
+
+        else if (collision.gameObject.tag == "EnemyShot")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            // retry panel
+            GameMangerScript.instance.ActiveRetryPanel();
         }
     }
 }
