@@ -7,15 +7,24 @@ using UnityEngine;
 public class DataMangerScript : MonoBehaviour
 {
     public static DataMangerScript instance;
+    public GameObject asteroidPref;
+    public GameObject enemyA;
+    public GameObject enemyB;
+    public GameObject enemyC;
+    
 
-    public float totalCoin;
-    public int stage;
+    public float totalCoin = 0;
+    public int stage = 1;
 
     private string TOTAL_COIN = "TotalCoin";
     private string STAGE = "Stage";
     private int FINAL_STAGE = 4;
 
-    private int[] clearKillPerStage = new int[5] { 0, 1, 2, 4, 5 };
+    private int[] clearKillPerStage = new int[5] { 0, 1, 2, 3, 5 };
+
+    private void Start()
+    {
+    }
 
     private void Awake()
     {
@@ -65,10 +74,47 @@ public class DataMangerScript : MonoBehaviour
         return clearKillPerStage[stage];
     }
 
+
+    public List<GameObject> getEnimies()
+    {
+        List<List<GameObject>> enimies = new List<List<GameObject>>();
+
+        enimies.Add(new List<GameObject>());
+        enimies.Add(new List<GameObject>());
+        enimies.Add(new List<GameObject>());
+        enimies.Add(new List<GameObject>());
+
+
+        enimies[0].Add(enemyA);
+        enimies[0].Add(enemyA);
+        enimies[0].Add(enemyA);
+
+
+        enimies[1].Add(enemyA);
+        enimies[1].Add(enemyA);
+        enimies[1].Add(enemyB);
+
+
+        enimies[2].Add(enemyA);
+        enimies[2].Add(enemyB);
+        enimies[2].Add(enemyB);
+
+        enimies[3].Add(enemyA);
+        enimies[3].Add(enemyB);
+        enimies[3].Add(enemyC);
+
+        return enimies[GetStage() - 1];
+    }
+
     public void resetGame() {
         PlayerPrefs.SetFloat(TOTAL_COIN, 0);
         PlayerPrefs.SetInt(STAGE, 1);
         this.stage = 1;
         this.totalCoin = 0;
+    }
+
+    public bool isLastStage()
+    {
+        return this.FINAL_STAGE == this.stage;
     }
 }
