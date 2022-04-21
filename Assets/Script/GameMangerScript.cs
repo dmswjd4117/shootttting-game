@@ -14,6 +14,8 @@ public class GameMangerScript : MonoBehaviour
     public GameObject pausePanel;
     public GameObject retryPanel;
     public GameObject clearPanel;
+    public GameObject FinalClearPanel;
+
 
     public Text RetryPanel_coinText;
     public Text RetryPanel_stageText;
@@ -25,6 +27,14 @@ public class GameMangerScript : MonoBehaviour
     public Text ClearPanel_stageText;
     public Button ClearPanel_nextStepBtn;
     public Button ClearPanel_MainBtn;
+
+    public Text FinalClearPanel_coinText;
+    public Text FinalClearPanel_stageText;
+    public Button FinalClearPanel_MainBtn;
+
+
+    public Text GameState_curStage;
+    public Text GameState_remainEnemy;
 
 
     public Text coinText;
@@ -43,10 +53,16 @@ public class GameMangerScript : MonoBehaviour
  
     void Start()
     {
+        //if (DataMangerScript.instance.isLastStage())
+        //{
+        //    ActiveFinalClearPanel();
+        //    return;
+        //}
         tempCoin = 0;
         kill = 0;
         MAX_TIME = 2;
         UpdateCoinText();
+        UpdateGameStateText();
     }
 
  
@@ -63,8 +79,11 @@ public class GameMangerScript : MonoBehaviour
             else if(temp == 1)
             {
                 int type = Random.Range(0, 3);
+
+                print(type);
+                print(DataMangerScript.instance.getEnimies()[type].name);   
                
-                Instantiate(enimies[type], new Vector3(10, Random.Range(-4.0f, 4.0f), 0), Quaternion.identity);
+                Instantiate(DataMangerScript.instance.getEnimies()[type], new Vector3(10, Random.Range(-4.0f, 4.0f), 0), Quaternion.identity);
             }
             time = 0;
         }
@@ -74,8 +93,15 @@ public class GameMangerScript : MonoBehaviour
     public void KillEnemy()
     {
         this.kill += 1;
-        if(this.kill >= DataMangerScript.instance.getClearKillPerStage()) 
+        UpdateCurRemainEnemyText();
+        if (this.kill >= DataMangerScript.instance.getClearKillPerStage()) 
         {
+            if (DataMangerScript.instance.isLastStage())
+            {
+                ActiveFinalClearPanel();
+                return;
+            }
+
             ActiveClearPanel();
         }
     }
@@ -169,5 +195,45 @@ public class GameMangerScript : MonoBehaviour
         clearPanel.SetActive(true);
 
         DataMangerScript.instance.AddStage();
+    }
+
+
+    // final clear panel
+
+    public void ActiveFinalClearPanel()
+    {
+        int curStage = DataMangerScript.instance.GetStage();
+        FinalClearPanel_coinText.text = tempCoin.ToString();
+        FinalClearPanel_stageText.text = curStage.ToString();
+        FinalClearPanel.SetActive(true);
+        Time.timeScale = 0;
+        DataMangerScript.instance.resetGame();
+    }
+
+    public void FinalClearMainListener()
+    {
+        FinalClearPanel.SetActive(false);
+        SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1;
+    }
+
+
+
+    // 게임화면에 표시되는 현재 스테이지와 남은적 텍스트 표시하기
+    public void UpdateGameStateText()
+    {
+        UpdateCurStageText();
+        UpdateCurRemainEnemyText();
+    }
+
+    public void UpdateCurStageText()
+    {
+        GameState_curStage.text = DataMangerScript.instance.GetStage().ToString();
+    }
+
+    public void UpdateCurRemainEnemyText()
+    {
+        int remain = DataMangerScript.instance.getClearKillPerStage() - kill;
+        GameState_remainEnemy.text = remain.ToString();
     }
 }
