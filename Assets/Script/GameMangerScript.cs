@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// 유니티 씬 변경시 데이터와 gameObject 유지
-// https://velog.io/@kjms830/%EC%9C%A0%EB%8B%88%ED%8B%B0-%EC%94%AC-%EB%B3%80%EA%B2%BD%EC%8B%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9C%A0%EC%A7%80
-
 
 public class GameMangerScript : MonoBehaviour
 {
@@ -53,11 +50,6 @@ public class GameMangerScript : MonoBehaviour
  
     void Start()
     {
-        //if (DataMangerScript.instance.isLastStage())
-        //{
-        //    ActiveFinalClearPanel();
-        //    return;
-        //}
         tempCoin = 0;
         kill = 0;
         MAX_TIME = 2;
@@ -69,7 +61,7 @@ public class GameMangerScript : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if(time > MAX_TIME)
+        if(time > DataMangerScript.instance.getEnemyMaxTime())
         {
             int temp = Random.Range(0, 2);
             if(temp == 0)
@@ -80,9 +72,6 @@ public class GameMangerScript : MonoBehaviour
             {
                 int type = Random.Range(0, 3);
 
-                print(type);
-                print(DataMangerScript.instance.getEnimies()[type].name);   
-               
                 Instantiate(DataMangerScript.instance.getEnimies()[type], new Vector3(10, Random.Range(-4.0f, 4.0f), 0), Quaternion.identity);
             }
             time = 0;
